@@ -1,14 +1,3 @@
-/**
- * Created by Keno on 3/11/2016.
- */
-/*
-var express = require("express");
-var app = express();
-
-app.use(express.static("app"));
-app.listen(3000, function(){
-    console.log("Listening on port 3000");
-});*/
 var express = require("express");
 var server  = express();
 var mongoose = require('mongoose');
@@ -51,11 +40,15 @@ server.post("/delete", function(req, res, next){
 
 //Update an item
 server.post("/checking", function(req, res, next){
-    Item.update({"_id" : ObjectId(req.body.id)},{"bought" :true}, function(err, res){
-        if(err){
-            return next(err);
-        }
+    Item.find({_id:ObjectId(req.body.id)}, function(err, doc){
+        var currentStatus = doc[0].bought;
+        Item.update({"_id" : ObjectId(req.body.id)},{"bought" : !currentStatus}, function(err, res){
+            if(err){
+                return next(err);
+            }
+        });
     });
+
 
 });
 

@@ -1,6 +1,3 @@
-/**
- * Created by Keno on 3/11/2016.
- */
 "use strict";
 shoppingList.controller("appController", function($scope, shoppingData, $http){
     $scope.item = "test samo";
