@@ -11,9 +11,12 @@ shoppingList.factory("shoppingData", function($http){
            return $http({method:"POST", url:"/delete", data:JSON.stringify(data)})
        },
        switchChecked:function(itemId){
-            console.log("itemID in the factory is ", itemId);
            var data = {id:itemId};
            return $http({method:"POST", url:"/checking", data:JSON.stringify(data)})
+       },
+       changeQuantity:function(itemId, dec){
+           var data = {id:itemId, decrease:dec};
+           return $http({method:"PUT", url:"/changeQty", data:JSON.stringify(data)})
        }
    }
 });

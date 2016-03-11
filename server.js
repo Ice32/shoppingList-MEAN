@@ -12,7 +12,6 @@ server.use(express.static("app"));
 server.use(bodyParser.json());
 //Add an item
 server.post("/add", function(req, res, next){
-    console.log(req.body);
     var item = new Item();
     item.name = req.body.itemName;
     item.quantity = req.body.itemQuantity;
@@ -33,8 +32,8 @@ server.get("/get", function(req, res, next){
 });
 //Remove item from teh DB
 server.post("/delete", function(req, res, next){
-    console.log(req.body.id);
-    Item.remove({"_id": ObjectId(req.body.id)}, function(err, res){
+    Item.remove({"_id": ObjectId(req.body.id)}, function(err, data){
+        res.send(data);
     });
 });
 
@@ -42,14 +41,25 @@ server.post("/delete", function(req, res, next){
 server.post("/checking", function(req, res, next){
     Item.find({_id:ObjectId(req.body.id)}, function(err, doc){
         var currentStatus = doc[0].bought;
-        Item.update({"_id" : ObjectId(req.body.id)},{"bought" : !currentStatus}, function(err, res){
+        Item.update({"_id" : ObjectId(req.body.id)},{"bought" : !currentStatus}, function(err, data){
             if(err){
                 return next(err);
             }
+            res.send(data);
         });
     });
 
 
+});
+
+server.put("/changeQty", function(req, res){
+    Item.update({_id:ObjectId(req.body.id)}, {$inc:{ quantity: req.body.decrease?-1:1 }}, function(err, data){
+        if(err){
+            console.log(err);
+            res.status(404).end();
+        }
+        res.status(200).send(data);
+    });
 });
 
 server.listen(3210);
