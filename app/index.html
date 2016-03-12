@@ -65,7 +65,7 @@
                           </tr>
                           </thead>
                           <tbody  class="textOutput">
-                          <tr ng-repeat="item in data" class="tableRow" ><td ng-click="changeName(item)" ng-class="{checked:item.bought, itemName:true}">{{item.name}}</td><td>{{item.price | currency}}</td><td>{{item.quantity}}</td>
+                          <tr ng-repeat="item in data" class="tableRow" ><td data-toggle="modal" data-target=".bs-example-modal-sm" ng-class="{checked:item.bought, itemName:true}" ng-click="changeLastUsed(item)">{{item.name}}</td><td>{{item.price | currency}}</td><td>{{item.quantity}}</td>
                               <td><input type="checkbox"  name="checkBought" id="checkBought" ng-click="switchChecked(item, addItemForm)" ng-checked="item.bought"/> </td>
                               <td><button class="btn btn-primary" ng-click="deleteItem(item)">X</button></td>
                               <td><button class="btn btn-primary" ng-click="changeQty(item)">+</button></td>
@@ -73,9 +73,31 @@
                           </tr>
                           </tbody>
                       </table>
+                      <div class="modal fade bs-example-modal-sm"id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                      <h4 class="modal-title" id="exampleModalLabel">Change the name of the item</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form>
+                                          <div class="form-group">
+                                              <label for="new-item-name" class="control-label">New name:</label>
+                                              <input type="text" ng-model="newName" class="form-control" id="new-item-name">
+                                          </div>
+                                      </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary" ng-click="changeName(item)" data-dismiss="modal">Confirm change</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                       <br />
                       <div class="textOutput">
-                          Total spent:{{totalSpent | currency}}
+                          Total spent: {{totalSpent | currency}}
                           <button class="btn btn-primary refreshList" ng-click="refreshList()">New List</button>
                       </div>
                   </div>

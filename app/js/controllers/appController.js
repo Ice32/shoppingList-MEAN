@@ -1,4 +1,7 @@
 "use strict";
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+});
 shoppingList.controller("appController", function($scope, shoppingData, $log){
     function loadData(){
         shoppingData.getAllData().success(function(data){
@@ -41,10 +44,14 @@ shoppingList.controller("appController", function($scope, shoppingData, $log){
             })
         }
     };
-    $scope.changeName = function(item){
-        var newName = prompt("Enter the new name:");
-        if(!newName)return false;
-        item.name = newName;
-        shoppingData.changeName(item);
+    $scope.changeName = function(){
+        console.log($scope.newName);
+        $scope.lastUsed.name = $scope.newName;
+        shoppingData.changeName($scope.lastUsed).success(function(){
+            $("#new-item-name").val("");
+        });
+    };
+    $scope.changeLastUsed = function(item){
+        $scope.lastUsed = item;
     }
 });
