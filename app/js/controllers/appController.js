@@ -3,11 +3,16 @@ shoppingList.controller("appController", function($scope, shoppingData, $log){
     function loadData(){
         shoppingData.getAllData().success(function(data){
             $scope.data = data;
+            var totalSpent = 0;
+            for(var item in data){
+                totalSpent += data[item].price * data[item].quantity;
+            }
+            $scope.totalSpent = totalSpent;
         });
     }
     loadData();
     $scope.submitItem = function(item){
-        if(!item.itemName || !item.itemPrice){
+        if(!item || !item.itemName || !item.itemPrice){
             return false;
         }
         if(!item.itemQuantity) item.itemQuantity = 1;
@@ -29,4 +34,13 @@ shoppingList.controller("appController", function($scope, shoppingData, $log){
         shoppingData.changeQuantity(item._id,dec);
         dec?item.quantity--:item.quantity++;
     };
+    $scope.refreshList = function(){
+        if(confirm("This action will delete all of the items. Are you sure you want to proceed?")){
+            console.log("deleting");
+            shoppingData.dropbDb().success(function(){
+                console.log("data deleted");
+                loadData();
+            })
+        }
+    }
 });

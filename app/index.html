@@ -21,13 +21,17 @@
             <button ng-click="submitItem(itemModel)">Add</button>
         </form>
         <ul>
-            <li ng-repeat="item in data" ><span ng-class="{checked:item.bought}">{{item.name}}-{{item.price}}-{{item.quantity}}</span>
+            <li ng-repeat="item in data" ><span ng-class="{checked:item.bought}">{{item.name}}-{{item.price | currency}}-{{item.quantity}}</span>
                 <input type="checkbox"  name="checkBought" id="checkBought" ng-click="switchChecked(item, addItemForm)" ng-checked="item.bought"/>
                 <button ng-click="deleteItem(item)">Delete</button>
                 <button ng-click="changeQty(item)">+</button>
                 <button ng-click="changeQty(item, true)">-</button>
             </li>
         </ul>
+        <div>
+            Total spent:{{totalSpent | currency}}
+            <button ng-click="refreshList()">New List</button>
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

@@ -17,6 +17,9 @@ shoppingList.factory("shoppingData", function($http){
        changeQuantity:function(itemId, dec){
            var data = {id:itemId, decrease:dec};
            return $http({method:"PUT", url:"/changeQty", data:JSON.stringify(data)})
+       },
+       dropbDb:function(){
+           return $http({method:"GET", url:"/drop"});
        }
    }
 });
