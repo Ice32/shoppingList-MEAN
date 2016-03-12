@@ -36,11 +36,15 @@ shoppingList.controller("appController", function($scope, shoppingData, $log){
     };
     $scope.refreshList = function(){
         if(confirm("This action will delete all of the items. Are you sure you want to proceed?")){
-            console.log("deleting");
             shoppingData.dropbDb().success(function(){
-                console.log("data deleted");
                 loadData();
             })
         }
+    };
+    $scope.changeName = function(item){
+        var newName = prompt("Enter the new name:");
+        if(!newName)return false;
+        item.name = newName;
+        shoppingData.changeName(item);
     }
 });

@@ -20,6 +20,10 @@ shoppingList.factory("shoppingData", function($http){
        },
        dropbDb:function(){
            return $http({method:"GET", url:"/drop"});
+       },
+       changeName:function(item){
+           var data = {id:item._id, name:item.name};
+           return $http({method:"PUT", url:"/chgName", data:data});
        }
    }
 });

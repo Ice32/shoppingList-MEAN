@@ -1,6 +1,160 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
+ @font-face:
+ {
+	 font-family: Arimo;
+	 src: url(https://fonts.googleapis.com/css?family=Arimo:400,700);
+ }
+
 .checked{
     text-decoration: line-through;
+}
+
+.inputs
+{
+	color:black;
+}
+body
+{
+    background-image:url("../img/background.png");
+    padding-bottom:15px;
+    padding-top:15px;
+
+
+}
+@font-face
+{
+    font-family: Pacifico;
+    src: url(https://fonts.googleapis.com/css?family=Pacifico);
+}
+.container
+{
+    width: 700px;
+    margin: 5px;
+    border-style:solid;
+	border-color: #ede0e0;
+    border-radius:25px;
+    padding: 10px 20px 10px 10px;
+    background-image: url("../img/background_div.png") ;
+    text-align:center;
+    color: black;
+}
+
+.containerImage
+{
+    margin: 0;
+    width: 650px;
+    margin-bottom:auto;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: auto;
+}
+td
+{
+    margin-bottom:auto;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: auto;
+    text-align:center;
+}
+
+.tableStyle
+{
+    margin-left:auto;
+    margin-right:auto;
+	width: 650px;
+	text-align: center;
+	
+}
+
+
+.forHeaders
+{
+    font-family:Pacifico;
+    font-size: 35px;
+    padding:15px;
+    text-align:center;
+    font-weight: lighter;
+    color: #ede0e0;
+    text-shadow: 1px 2px 3px #666;
+}
+
+.form-control
+{
+    margin-bottom:auto;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: auto;
+}
+
+.forButtons
+{
+    background-color:#ede0e0;
+    color: black;
+    border-radius:10px;
+    font-size:20px;
+    padding:5px;
+    font-family:Arimo;
+    text-shadow: 1px 2px 3px #666;
+    text-align:center;
+}
+.forButtons_plus
+{
+    background-color:#ede0e0;
+    color: black;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    font-size:20px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:auto;
+    margin-top:auto;
+    width:35px;
+    height:35px;
+    font-family:Pacifico;
+    text-shadow: 1px 2px 3px #666;
+    text-align:center;
+}
+
+.textOutput
+{
+    font-size:20px;
+}
+.btn{
+    margin-bottom:4px;
+}
+.refreshList{
+    margin-left:10px;
+}
+label
+{
+    font-family:Pacifico;
+    font-size: 25px;
+    text-align:center;
+    font-weight: 200;
+    text-shadow: 1px 2px 3px #666;
+}
+
+.forLabelsInput
+{
+	color: #ede0e0;
+	font-family: Arimo;
+	font-size: 25px;
+    text-align:center;
+	font-weight: 200;
+    text-shadow: 1px 2px 3px #666;
+}
+
+.forLabels
+
+{
+    font-family:Arimo;
+    font-size: 25px;
+    text-align:center;
+    font-weight: 200;
+    text-shadow: 1px 2px 3px #666;
+}
+.itemName{
+    cursor:pointer;
 }

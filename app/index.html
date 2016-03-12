@@ -2,36 +2,86 @@
 <html lang="en" ng-app="shoppingList">
 <head>
     <meta charset="UTF-8">
-    <title>Shopping List</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width">
+    <title>BEST shopping list</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="lib/bootstrap.css"/>
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body ng-cloak>
-    <div ng-controller="appController">
-        <form name="addItemForm">
-            <label for="itemName">Item Name</label>
-            <input type="text" ng-model="itemModel.itemName" required id="itemName"/>
-
-            <label for="itemPrice">Price</label>
-            <input type="number" ng-model="itemModel.itemPrice" required id="itemPrice"/>
-
-            <label for="itemQuantity">Quantity</label>
-            <input type="number" ng-model="itemModel.itemQuantity" id="itemQuantity"/>
-
-            <button ng-click="submitItem(itemModel)">Add</button>
-        </form>
-        <ul>
-            <li ng-repeat="item in data" ><span ng-class="{checked:item.bought}">{{item.name}}-{{item.price | currency}}-{{item.quantity}}</span>
-                <input type="checkbox"  name="checkBought" id="checkBought" ng-click="switchChecked(item, addItemForm)" ng-checked="item.bought"/>
-                <button ng-click="deleteItem(item)">Delete</button>
-                <button ng-click="changeQty(item)">+</button>
-                <button ng-click="changeQty(item, true)">-</button>
-            </li>
-        </ul>
-        <div>
-            Total spent:{{totalSpent | currency}}
-            <button ng-click="refreshList()">New List</button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-2 col-xs-12 col-xs-offset-0">
+                <img src="img/Drawing.png" class="containerImage" align="middle"/>
+            </div>
         </div>
+    </div>
+    <h2 class="forHeaders">Add item</h2>
+    <div ng-controller="appController">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-2 col-xs-12 col-xs-offset-0">
+                  <div align="center" class="container">
+                      <form name="addItemForm">
+                          <table align="middle" class="tableStyle">
+                              <thead>
+                              <tr>
+                                  <td align="center"><label class="forLabelsInput" for="itemName">Item Name:</label></td>
+                                  <td align="center"><label class="forLabelsInput" for="itemPrice">Price:</label></td>
+                                  <td align="center"><label class="forLabelsInput" for="itemQuantity">Quantity:</label></td>
+                              </tr>
+                              </thead>
+                             <tbody>
+                             <tr>
+                                 <td><input  class="inputs" type="text" ng-model="itemModel.itemName" required id="itemName"/></td>
+                                 <td><input  class="inputs"type="number" ng-model="itemModel.itemPrice" required id="itemPrice"/></td>
+                                 <td><input class="inputs" type="number" ng-model="itemModel.itemQuantity" id="itemQuantity"/></td>
+
+                                 <td><button  class="btn btn-primary" ng-click="submitItem(itemModel)" class="forButtons">Add</button></td>
+                             </tr>
+                             </tbody>
+
+
+                          </table>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-2 col-xs-12 col-xs-offset-0">
+                  <h2 class="forHeaders">Shopping List</h2>
+                  <div class="container">
+                      <table class="tableStyle">
+                          <thead>
+                          <tr>
+                              <td align="center" class="forLabelsInput">Item Name:</td>
+                              <td align="center" class="forLabelsInput">Price:</td>
+                              <td align="center" class="forLabelsInput">Quantity:</td>
+                              <td align="center" class="forLabelsInput">Bought?</td>
+                              <td align="center" class="forLabelsInput">Delete</td>
+                              <td align="center" class="forLabelsInput">Add</td>
+                          </tr>
+                          </thead>
+                          <tbody  class="textOutput">
+                          <tr ng-repeat="item in data" class="tableRow" ><td ng-click="changeName(item)" ng-class="{checked:item.bought, itemName:true}">{{item.name}}</td><td>{{item.price | currency}}</td><td>{{item.quantity}}</td>
+                              <td><input type="checkbox"  name="checkBought" id="checkBought" ng-click="switchChecked(item, addItemForm)" ng-checked="item.bought"/> </td>
+                              <td><button class="btn btn-primary" ng-click="deleteItem(item)">X</button></td>
+                              <td><button class="btn btn-primary" ng-click="changeQty(item)">+</button></td>
+                              <td><button class="btn btn-primary" ng-click="changeQty(item, true)">-</button></td>
+                          </tr>
+                          </tbody>
+                      </table>
+                      <br />
+                      <div class="textOutput">
+                          Total spent:{{totalSpent | currency}}
+                          <button class="btn btn-primary refreshList" ng-click="refreshList()">New List</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

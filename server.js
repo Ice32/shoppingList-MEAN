@@ -71,6 +71,18 @@ server.get("/drop", function(req, res){
         res.status(200).end();
     })
 });
+server.put("/chgName", function(req, res){
+    var id = req.body.id;
+    var newName = req.body.name;
+    Item.update({_id:ObjectId(id)}, {name:newName}, function(err, data){
+        if(err){
+            console.log(err);
+            res.status(404).end();
+        }
+        res.status(200).end();
+    });
+
+});
 
 server.listen(3210);
 console.log("Server listening on port 3210");
